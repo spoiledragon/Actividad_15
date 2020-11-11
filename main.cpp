@@ -4,7 +4,7 @@
 #include <string>
 #include <algorithm>
 using namespace std;
-vector<int> inter;
+vector<string> stringu;
 string opc;
 int main()
 {
@@ -12,7 +12,7 @@ int main()
     do
     {
         cout << left;
-        cout << "1) Agregar al inicio" << endl;
+        cout << "1) Agregar al Final" << endl;
         cout << "2) Mostrar data" << endl;
         cout << "3) Inicializar" << endl;
         cout << "4) Mostrar Frente" << endl;
@@ -26,19 +26,19 @@ int main()
 
         if (opc == "1")
         {
-            int ent;
-            cout << "entero:";
-            cin >> ent;
-            cin.ignore();
+            string x;
+            cout << "Palabra a ingresar:";
+            getline(cin,x);
+            fflush(stdin);
 
-            inter.push_back(ent);
+            stringu.push_back(x);
         }
 
         else if (opc == "2")
         {
-            for (size_t i = 0; i < inter.size(); i++)
+            for (size_t i = 0; i < stringu.size(); i++)
             {
-                cout << inter[i] << ",";
+                cout << stringu[i] << ","<<endl;
             }
             cout << endl;
         }
@@ -46,57 +46,70 @@ int main()
         else if (opc == "3")
         {
             size_t n;
-            int entero;
+            string x;
             cout << "tamanio:" << endl;
             cin >> n;
-            cout << "entero" << endl;
-            cin >> entero;
-            cin.ignore();
+            cout << "Palabra a insertar" << endl;
+            fflush(stdin);
+            getline(cin,x);
+            
 
-            inter = vector<int>(n, entero);
+            stringu = vector<string>(n,x);
         }
 
         else if (opc == "4")
         {
-            if (inter.empty())
+            if (stringu.empty())
             {
                 cout << "esta vacio" << endl;
             }
 
-            cout << inter.front() << endl;
+            cout << stringu.front() << endl;
         }
 
         else if (opc == "5")
         {
-            if (inter.empty())
+            if (stringu.empty())
             {
                 cout << "esta vacio" << endl;
             }
 
-            cout << inter.back() << endl;
+            cout << stringu.back() << endl;
         }
 
         else if (opc == "6")
         {
-            sort(inter.begin(), inter.end(), greater<int>());
+            string opc2;
+            cout << "1) ordenar de mayor a menor " << endl;
+            cout << "2) ordenar de menor a mayor " << endl;
+            cin >> opc2; cin.ignore();
+            if (opc2 == "1")
+            {
+                sort(stringu.begin(), stringu.end(), greater<string>());
+            }
+            else if (opc2 == "2")
+            {
+                sort(stringu.begin(), stringu.end(),less<string>());
+            }
         }
 
         else if (opc == "7")
         {
             size_t pos;
-            int entero;
+            string x;
             cout << "posicion: " << endl;
             cin >> pos;
-            cout << "entero a ingresar" << endl;
-            cin >> entero;
-            cin.ignore();
-            if (pos >= inter.size())
+            cout << "Palabra a ingresar" << endl;
+            fflush(stdin);
+            getline(cin,x);
+            if (pos >= stringu.size())
             {
                 cout << "posicion invalida" << endl;
+                system("PAUSE");
             }
             else
             {
-                inter.insert(inter.begin() + pos, entero);
+                stringu.insert(stringu.begin() + pos, x);
             }
         }
 
@@ -106,24 +119,26 @@ int main()
             cout << "borrar en posicion" << endl;
             cin >> pos;
             cin.ignore();
-            if (pos >= inter.size())
+            if (pos >= stringu.size())
             {
                 cout << "posicion invalida" << endl;
+                break;
             }
             else
             {
-                inter.erase(inter.begin() + pos);
+                stringu.erase(stringu.begin() + pos);
             }
         }
         else if (opc == "9")
         {
-            if (inter.empty())
+            if (stringu.empty())
             {
                 cout << "posicion invalida" << endl;
+                break;
             }
             else
             {
-                inter.pop_back();
+                stringu.pop_back();
             }
         }
 
